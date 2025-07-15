@@ -1,0 +1,109 @@
+services:
+  mongo:
+    image: mongo:v1
+    container_name: mongo
+    networks:
+      - rb
+    restart: on-failure
+
+  debug:
+    image: siva9666/debug-utility:v1
+    networks:
+      - rb
+    restart: on-failure
+
+  mysql:
+    image: mysql:v1
+    container_name: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=RoboShop@1
+    networks:
+      - rb
+    restart: on-failure
+
+  redis:
+    image: redis
+    container_name: redis
+    networks:
+      - rb
+    restart: on-failure
+
+  rabbit:
+    image: rabbit:v1
+    container_name: rabbit
+    networks:
+      - rb
+    restart: on-failure
+
+  catalogue:
+    image: catalogue:v1
+    container_name: catalogue
+    environment:
+      - MONGO=true
+      - MONGO_URL=mongodb://mongo:27017/catalogue
+    networks:
+      - rb
+    restart: on-failure
+
+  user:
+    image: user:v1
+    container_name: user
+    environment:
+      - MONGO=true
+      - MONGO_URL=mongodb://mongo:27017/users
+      - REDIS_HOST=redis
+    networks:
+      - rb
+    restart: on-failure
+
+  cart:
+    image: cart:v1
+    container_name: cart
+    environment:
+      - CATALOGUE_HOST=catalogue
+      - CATALOGUE_PORT=8080
+      - REDIS_HOST=redis
+    networks:
+      - rb
+    restart: on-failure
+
+  shipping:
+    image: shipping:v1
+    container_name: shipping
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=shipping
+      - DB_PASSWD=RoboShop@1
+      - CART_ENDPOINT=cart:8080
+    networks:
+      - rb
+    restart: on-failure
+
+  payment:
+    image: payment:v1
+    container_name: payment
+    environment:
+      - CART_HOST=cart
+      - CART_PORT=8080
+      - USER_HOST=user
+      - USER_PORT=8080
+      - AMQP_HOST=rabbit
+      - AMQP_USER=roboshop
+      - AMQP_PASS=roboshop123
+    networks:
+      - rb
+    restart: on-failure
+
+  web:
+    image: frontend:v1
+    container_name: web
+    ports:
+      - "80:80"
+    networks:
+      - rb
+    restart: on-failure
+
+networks:
+  rb:
+    driver: bridge
