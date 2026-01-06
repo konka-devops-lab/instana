@@ -12,6 +12,7 @@
 FROM 384570460482.dkr.ecr.ap-south-1.amazonaws.com/platform/nginx:1.25-alpine
 
 WORKDIR /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf
 COPY web/ .
 
 # no USER
