@@ -52,10 +52,10 @@
 # EXPOSE 8080
 
 # CMD ["java", "-jar", "shipping.jar"]
-FROM company/java-golden:17
+FROM 384570460482.dkr.ecr.ap-south-1.amazonaws.com/platform/java-runtime:11-jre-alpine
 
 WORKDIR /opt/server
 
-COPY app.jar app.jar
+COPY target/shipping-1.0.jar app.jar
 
 CMD ["java", "-jar", "app.jar"]
