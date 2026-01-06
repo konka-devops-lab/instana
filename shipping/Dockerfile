@@ -52,3 +52,10 @@
 # EXPOSE 8080
 
 # CMD ["java", "-jar", "shipping.jar"]
+FROM company/java-golden:17
+
+WORKDIR /opt/server
+
+COPY app.jar app.jar
+
+CMD ["java", "-jar", "app.jar"]
