@@ -94,6 +94,16 @@ services:
     networks:
       - rb
     restart: on-failure
+  dispatch:
+    image: dispatch:v1
+    container_name: dispatch
+    environment:
+      - AMQP_HOST=rabbit
+      - AMQP_USER=roboshop
+      - AMQP_PASS=roboshop123
+    networks:
+      - rb
+    restart: on-failure
 
   web:
     image: frontend:v1
