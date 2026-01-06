@@ -45,27 +45,27 @@ services:
       - rb
     restart: on-failure
 
-  # user:
-  #   image: user:v1
-  #   container_name: user
-  #   environment:
-  #     - MONGO=true
-  #     - MONGO_URL=mongodb://mongo:27017/users
-  #     - REDIS_HOST=redis
-  #   networks:
-  #     - rb
-  #   restart: on-failure
+  user:
+    image: user:v1
+    container_name: user
+    environment:
+      - MONGO=true
+      - MONGO_URL=mongodb://mongo:27017/users
+      - REDIS_HOST=redis
+    networks:
+      - rb
+    restart: on-failure
 
-  # cart:
-  #   image: cart:v1
-  #   container_name: cart
-  #   environment:
-  #     - CATALOGUE_HOST=catalogue
-  #     - CATALOGUE_PORT=8080
-  #     - REDIS_HOST=redis
-  #   networks:
-  #     - rb
-  #   restart: on-failure
+  cart:
+    image: cart:v1
+    container_name: cart
+    environment:
+      - CATALOGUE_HOST=catalogue
+      - CATALOGUE_PORT=8080
+      - REDIS_HOST=redis
+    networks:
+      - rb
+    restart: on-failure
 
   # shipping:
   #   image: shipping:v1
