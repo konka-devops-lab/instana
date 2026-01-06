@@ -1,18 +1,14 @@
 FROM nginx:1.25-alpine
 
-# Platform metadata
 LABEL org.opencontainers.image.source="platform-team" \
       org.opencontainers.image.description="NGINX Golden Runtime Image (Non-Root)" \
       org.opencontainers.image.version="1.25-alpine-v1"
 
-# Remove default config & content
+# Remove default config
 RUN rm -rf /usr/share/nginx/html/* \
     && rm -rf /etc/nginx/conf.d/default.conf
 
-# Create non-root user
-RUN addgroup -S nginx && adduser -S nginx -G nginx
-
-# Required runtime directories + permissions
+# Fix permissions for existing nginx user
 RUN mkdir -p /var/cache/nginx /var/run \
     && chown -R nginx:nginx \
        /var/cache/nginx \
@@ -20,7 +16,10 @@ RUN mkdir -p /var/cache/nginx /var/run \
        /usr/share/nginx \
        /etc/nginx
 
-# Drop root
+# Platform nginx config
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Drop root (reuse existing nginx user)
 USER nginx
 
 EXPOSE 8080
