@@ -22,33 +22,33 @@
 # =========================
 # Build stage
 # =========================
-FROM maven:3.9.6-eclipse-temurin-17 AS build
+# FROM maven:3.9.6-eclipse-temurin-17 AS build
 
-WORKDIR /opt/server
+# WORKDIR /opt/server
 
-COPY pom.xml .
-RUN mvn dependency:go-offline
+# COPY pom.xml .
+# RUN mvn dependency:go-offline
 
-COPY src src
-RUN mvn clean package -DskipTests
+# COPY src src
+# RUN mvn clean package -DskipTests
 
-RUN cp target/shipping-1.0.jar shipping.jar
+# RUN cp target/shipping-1.0.jar shipping.jar
 
 
-# =========================
-# Runtime stage
-# =========================
-FROM eclipse-temurin:17-jre-alpine
+# # =========================
+# # Runtime stage
+# # =========================
+# FROM eclipse-temurin:17-jre-alpine
 
-RUN adduser -D -h /opt/server roboshop \
-    && mkdir -p /opt/server \
-    && chown -R roboshop:roboshop /opt/server
+# RUN adduser -D -h /opt/server roboshop \
+#     && mkdir -p /opt/server \
+#     && chown -R roboshop:roboshop /opt/server
 
-WORKDIR /opt/server
+# WORKDIR /opt/server
 
-COPY --from=build /opt/server/shipping.jar /opt/server/shipping.jar
+# COPY --from=build /opt/server/shipping.jar /opt/server/shipping.jar
 
-USER roboshop
-EXPOSE 8080
+# USER roboshop
+# EXPOSE 8080
 
-CMD ["java", "-jar", "shipping.jar"]
+# CMD ["java", "-jar", "shipping.jar"]
