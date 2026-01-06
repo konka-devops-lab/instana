@@ -16,8 +16,7 @@ RUN mkdir -p /var/cache/nginx /var/run \
        /usr/share/nginx \
        /etc/nginx
 
-# Platform nginx config
-COPY nginx.conf /etc/nginx/nginx.conf
+
 
 # Drop root (reuse existing nginx user)
 USER nginx
