@@ -67,18 +67,18 @@ services:
       - rb
     restart: on-failure
 
-  # shipping:
-  #   image: shipping:v1
-  #   container_name: shipping
-  #   environment:
-  #     - DB_HOST=mysql
-  #     - DB_PORT=3306
-  #     - DB_USER=shipping
-  #     - DB_PASSWD=RoboShop@1
-  #     - CART_ENDPOINT=cart:8080
-  #   networks:
-  #     - rb
-  #   restart: on-failure
+  shipping:
+    image: shipping:v1
+    container_name: shipping
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=shipping
+      - DB_PASSWD=RoboShop@1
+      - CART_ENDPOINT=cart:8080
+    networks:
+      - rb
+    restart: on-failure
 
   # payment:
   #   image: payment:v1
