@@ -19,6 +19,10 @@ FROM python:3.12-alpine
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1
 
+LABEL org.opencontainers.image.source="platform-team" \
+      org.opencontainers.image.description="Python Golden Runtime Image" \
+      org.opencontainers.image.version="3.12-alpine-v1"
+
 RUN apk add --no-cache \
     pcre \
     libffi \

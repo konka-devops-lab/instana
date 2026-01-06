@@ -6,6 +6,10 @@ FROM node:20-alpine
 # Runtime defaults
 ENV NODE_ENV=production
 
+LABEL org.opencontainers.image.source="platform-team" \
+      org.opencontainers.image.description="Node.js Golden Runtime Image" \
+      org.opencontainers.image.version="20-alpine-v1"
+
 # Create non-root user and workdir
 RUN addgroup -S roboshop && \
     adduser -S roboshop -G roboshop && \
