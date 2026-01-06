@@ -95,14 +95,14 @@ services:
       - rb
     restart: on-failure
 
-  # web:
-  #   image: frontend:v1
-  #   container_name: web
-  #   ports:
-  #     - "80:80"
-  #   networks:
-  #     - rb
-  #   restart: on-failure
+  web:
+    image: frontend:v1
+    container_name: web
+    ports:
+      - "80:80"
+    networks:
+      - rb
+    restart: on-failure
 
 networks:
   rb:
