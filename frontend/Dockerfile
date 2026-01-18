@@ -9,7 +9,7 @@
 # COPY web/ /usr/share/nginx/html/
 
 
-FROM 384570460482.dkr.ecr.ap-south-1.amazonaws.com/platform/nginx:1.25-alpine
+FROM 384570460482.dkr.ecr.ap-south-1.amazonaws.com/platform/nginx:alpine-3.23.2-v1.0.0
 
 COPY nginx.conf /etc/nginx/nginx.conf
 

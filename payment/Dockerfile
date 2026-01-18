@@ -22,7 +22,7 @@
 # EXPOSE 8080
 # CMD ["uwsgi", "--ini", "payment.ini"]
 
-FROM 384570460482.dkr.ecr.ap-south-1.amazonaws.com/platform/python-runtime:3.12-alpine
+FROM 384570460482.dkr.ecr.ap-south-1.amazonaws.com/platform/python-runtime:3.12-alpine-3.23.2
 
 WORKDIR /opt/server
 

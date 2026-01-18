@@ -52,7 +52,7 @@
 # EXPOSE 8080
 
 # CMD ["java", "-jar", "shipping.jar"]
-FROM 384570460482.dkr.ecr.ap-south-1.amazonaws.com/platform/java-runtime:11-jre-alpine
+FROM 384570460482.dkr.ecr.ap-south-1.amazonaws.com/platform/java-runtime:11-jre-alpine-v1.0.0
 
 WORKDIR /opt/server
 
