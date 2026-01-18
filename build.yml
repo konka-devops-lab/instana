@@ -39,11 +39,11 @@ services:
       context: ./payment
       dockerfile: Dockerfile
     image: payment:v1
-  dispatch:
-    build:
-      context: ./dispatch
-      dockerfile: Dockerfile
-    image: dispatch:v1
+  # dispatch:
+  #   build:
+  #     context: ./dispatch
+  #     dockerfile: Dockerfile
+  #   image: dispatch:v1
   frontend:
     build:
       context: ./frontend
